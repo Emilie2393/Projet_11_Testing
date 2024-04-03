@@ -1,0 +1,7 @@
+bin
+Include
+Lib
+.Python
+tests/
+.envrc
+__pycache__
