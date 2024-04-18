@@ -30,7 +30,7 @@ def create_app(config):
             club = [club for club in clubs if club['email'] == request.form['email']][0]
             return render_template('welcome.html',club=club,competitions=competitions)
         except IndexError:
-            return "Sorry, that email wasn't found."
+            return "Sorry, that email wasn't found.", 404
 
 
     @app.route('/book/<competition>/<club>')
