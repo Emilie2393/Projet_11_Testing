@@ -1,6 +1,6 @@
 from tests.conftest import client
 
-class TestClubPointsUpdate:
+class TestPointsDiplayBoard:
 
 	def test_should_status_code_ok(self, client):
 		response = client.get('/')
