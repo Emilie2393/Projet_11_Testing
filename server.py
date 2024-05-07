@@ -2,28 +2,27 @@ import json
 from flask import Flask,render_template,request,redirect,flash,url_for
 
 def create_app(config):
+
     def loadClubs():
         with open('clubs.json') as c:
             listOfClubs = json.load(c)['clubs']
             return listOfClubs
-
 
     def loadCompetitions():
         with open('competitions.json') as comps:
             listOfCompetitions = json.load(comps)['competitions']
             return listOfCompetitions
 
-
     app = Flask(__name__)
     app.config.from_object(config)
     app.secret_key = 'something_special'
-
     competitions = loadCompetitions()
     clubs = loadClubs()
 
     @app.route('/')
     def index():
         return render_template('index.html')
+
 
     @app.route('/showSummary',methods=['POST'])
     def showSummary():
