@@ -1,11 +1,13 @@
 from tests.conftest import client
 
-class TestBookingPlaces:
-	club = "Simply Lift"
-	competition = "Spring Festival"
-	places = "10"
+class TestBookingDates:
 
-	def test_should_status_code_ok(self, client):
-		response = client.post('/purchasePlaces', data={"club":self.club, "competition": self.competition, "places": self.places})
+	def test_past_date_not_available(self, client):
+		response = client.get('/book/Fall%20Classic/Simply%20Lift')
+		assert "no longer available" in response.data.decode()
+		assert response.status_code == 400
+	
+	def test_future_date_available(self, client):
+		response = client.get('/book/Spring%20Festival/Simply%20Lift')
+		assert "Places available" in response.data.decode()
 		assert response.status_code == 200
-		assert 'Points available: 3' in response.data.decode()

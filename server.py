@@ -39,7 +39,7 @@ def create_app(config):
             if datetime.datetime.strptime(foundCompetition['date'][:10], '%Y-%m-%d').date() > datetime.date.today():
                 return render_template('booking.html',club=foundClub,competition=foundCompetition)
             else:
-                return (f"This competition took place on {str(datetime.datetime.strptime(foundCompetition['date'][:10], '%Y-%m-%d').date())} and is no longer avaiblable")
+                return (f"This competition took place on {str(datetime.datetime.strptime(foundCompetition['date'][:10], '%Y-%m-%d').date())} and is no longer available"), 400
         else:
             flash("Something went wrong-please try again")
             return render_template('welcome.html', club=club, competitions=competitions)
