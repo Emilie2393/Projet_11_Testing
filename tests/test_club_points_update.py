@@ -1,16 +1,13 @@
-from tests.conftest import client
+from tests.conftest import client, competitions
 
 class TestClubPointsUpdate:
-	club = "Simply Lift"
-	competition = "Spring Festival"
-	places = "10"
 
-	def test_should_status_code_ok(self, client):
-		response = client.post('/purchasePlaces', data={"club":self.club, "competition": self.competition, "places": self.places})
+	def test_points_correctly_deducted(self, client, competitions):
+		response = client.post('/purchasePlaces', data={"club": competitions[0]["club"], "competition": competitions[0]["competition"], "places": competitions[0]["places"]})
 		assert response.status_code == 200
 		assert 'Points available: 3' in response.data.decode()
 
 
-	def test_previous_result(self, client):
-		response = client.post('/purchasePlaces', data={"club":self.club, "competition": self.competition, "places": self.places})
+	def test_points_not_deducted(self, client, competitions):
+		response = client.post('/purchasePlaces', data={"club":competitions[0]["club"], "competition": competitions[0]["competition"], "places": competitions[0]["places"]})
 		assert 'Points available: 13' not in response.data.decode()
