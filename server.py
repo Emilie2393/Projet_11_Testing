@@ -1,9 +1,10 @@
 import json
 from flask import Flask,render_template,request,redirect,flash,url_for
+import datetime
 
 def create_app(config):
     def loadClubs():
-        with open('clubs.json', 'r') as c:
+        with open('clubs.json') as c:
             listOfClubs = json.load(c)['clubs']
             return listOfClubs
 
@@ -22,7 +23,7 @@ def create_app(config):
 
     @app.route('/')
     def index():
-        return render_template('index.html', clubs=clubs)
+        return render_template('index.html')
 
     @app.route('/showSummary',methods=['POST'])
     def showSummary():
@@ -38,16 +39,10 @@ def create_app(config):
         foundClub = [c for c in clubs if c['name'] == club][0]
         foundCompetition = [c for c in competitions if c['name'] == competition][0]
         if foundClub and foundCompetition:
-            return render_template('booking.html',club=foundClub,competition=foundCompetition)
-        else:
-            flash("Something went wrong-please try again")
-            return render_template('welcome.html', club=club, competitions=competitions)
-    @app.route('/book/<competition>/<club>')
-    def book(competition,club):
-        foundClub = [c for c in clubs if c['name'] == club][0]
-        foundCompetition = [c for c in competitions if c['name'] == competition][0]
-        if foundClub and foundCompetition:
-            return render_template('booking.html',club=foundClub,competition=foundCompetition)
+            if datetime.datetime.strptime(foundCompetition['date'][:10], '%Y-%m-%d').date() > datetime.date.today():
+                return render_template('booking.html',club=foundClub,competition=foundCompetition)
+            else:
+                return (f"This competition took place on {str(datetime.datetime.strptime(foundCompetition['date'][:10], '%Y-%m-%d').date())} and is no longer available"), 400
         else:
             flash("Something went wrong-please try again")
             return render_template('welcome.html', club=club, competitions=competitions)
