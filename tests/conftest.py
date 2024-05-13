@@ -9,6 +9,16 @@ def client():
         yield client
 
 @pytest.fixture
+def competitions():
+    competitions = [
+        {"club": "Simply Lift",
+        "competition": "Spring Festival",
+        "places": "10"},
+
+    ]
+    return competitions
+
+@pytest.fixture
 def users():
     users = [
         {'email': ['john@simplylift.co', 'wrongemail@simplylift.co']}
