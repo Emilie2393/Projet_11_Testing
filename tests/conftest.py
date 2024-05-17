@@ -13,7 +13,7 @@ def competitions():
     competitions = [
         {"club": "Simply Lift",
         "competition": "Spring Festival",
-        "places": ["10", "15"]},
+        "places": ["10", "15", "13"]},
     ]
     return competitions
 

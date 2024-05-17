@@ -75,3 +75,5 @@ def create_app(config):
         return redirect(url_for('index'))
 
     return app
+
+app=create_app({"TESTING": True})
