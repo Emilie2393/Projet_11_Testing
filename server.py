@@ -64,12 +64,6 @@ def create_app(config):
         else:
             return (f"You don't have enough points. Points available : {club['points']}"), 400
 
-        
-
-
-    # TODO: Add route for points display
-
-
     @app.route('/logout')
     def logout():
         return redirect(url_for('index'))
