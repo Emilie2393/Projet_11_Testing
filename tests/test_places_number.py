@@ -18,6 +18,7 @@ class TestPlacesNumber:
 		 	client (func): client returned in contest file to simulate the app
 			competitions (list): data simulation
 		"""
-		response = client.post('/purchasePlaces', data={"club":competitions[0]['club'], "competition": competitions[0]['competition'], "places": competitions[0]['places'][1]})
+		response = client.post('/purchasePlaces', data={"club":competitions[0]['club'], "competition": competitions[0]['competition'], "places": competitions[0]['places'][2]})
+		assert "You can't book more than 12 places per competition" in response.data.decode()
 		assert response.status_code == 400
 
