@@ -49,3 +49,11 @@
     We also like to show how well we're testing, so there's a module called 
     [coverage](https://coverage.readthedocs.io/en/coverage-5.1/) you should add to your project.
 
+6. Work report 
+
+    For project testing use command `pytest .\tests` at the root of the project:
+
+    * To run only integration_tests use commande `pytest .\tests\integration_tests`. Replace integration_tests by the folder of your choice to run other tests separatly. 
+    * To check application speed, go into performance_tests folder and use command `locust`. Use the configuration of your choice inside the web interface.
+    * To check tests covering use command `pytest --cov=. tests/` at the root of your project. 
+
