@@ -1,7 +1,2 @@
-bin
-Include
-Lib
-.Python
-tests/
-.envrc
+venv/
 __pycache__
