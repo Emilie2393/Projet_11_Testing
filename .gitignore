@@ -1,6 +1,2 @@
-bin
-Include
-Lib
-.Python
-.envrc
 __pycache__
+venv
