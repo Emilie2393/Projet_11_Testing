@@ -15,7 +15,7 @@ Pytest settings are available and customizable in the `pytest.ini` file.
 1 branch is a new feature for the app :  
 - We are now able to see the clubs points on the login page.  
 
-QA branch is the merging of all those branches.  
+QA branch is the merging of all those branches. The final app is created from this branch. Master branch is the original app.  
 
 ---
 
