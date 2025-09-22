@@ -35,6 +35,27 @@ pytest
 
 - Each tests folder contains test cases related to the fixes implemented in its corresponding branch.  
 
-- Pytest settings are defined in pytest.ini and can be customized to suit your environment.  
+- The final version is available in the QA branch.  
 
+## 🐝 Load Testing with Locust  
+Locust simulates virtual users to test and measure the performance of your Flask application under real-world load conditions.  
 
+To use it, proceed like following instructions:  
+
+Run the Flask application with powershell:  
+
+```powershell
+$env:FLASK_APP="server:create_app"  
+flask run  
+```  
+
+You can now access to the app into your browser: http://127.0.0.1:5000/  
+
+Open another terminal:  
+
+```powershell
+locust -f tests/performance_tests/locustfile.py  
+```  
+
+You can now access to the Locust board in your browser: http://localhost:8089/  
+Enter the simulate data of your choice and run Locust with the Flask app url: http://127.0.0.1:5000/  
