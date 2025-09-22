@@ -1,51 +1,72 @@
-# gudlift-registration
+# Project 11 - Testing
 
-1. Why
+This project contains a base application and a comprehensive test suite managed with **pytest**.  
+Each branch originally corresponded to a specific issue or bug in the application.  
+The tests for these fixes are present in each `tests` folder and can be run using **pytest**.  
+Pytest settings are available and customizable in the `pytest.ini` file.  
 
+5 branches were made to bugfix some issues :  
+- Point updates was not reflected on the main page, after they were on the booking page.  
+- Entering a unknown email on the login page use to crashes the app.  
+- Clubs were able to use more than their points allowed.  
+- It was possible to book places for past competitions.  
+- Clubs were able to book 12 places per competition. It's not allowed.  
 
-    This is a proof of concept (POC) project to show a light-weight version of our competition booking platform. The aim is the keep things as light as possible, and use feedback from the users to iterate.
+1 branch is a new feature for the app :  
+- We are now able to see the clubs points on the login page.  
 
-2. Getting Started
+QA branch is the merging of all those branches. The final app is created from this branch. Master branch is the original app.  
 
-    This project uses the following technologies:
+---
 
-    * Python v3.x+
+## 🚀 Installation
 
-    * [Flask](https://flask.palletsprojects.com/en/1.1.x/)
+### 1. Clone the repository
+```powershell
+git clone https://github.com/Emilie2393/Projet_11_Testing.git
+```
 
-        Whereas Django does a lot of things for us out of the box, Flask allows us to add only what we need. 
-     
+### 2. Create a virtual environment  
+```powershell
+python -m venv .venv
+.\.venv\Scripts\activate
+```  
 
-    * [Virtual environment](https://virtualenv.pypa.io/en/stable/installation.html)
+### 3. Install dependencies  
+```powershell
+pip install -r requirements.txt
+```  
 
-        This ensures you'll be able to install the correct packages without interfering with Python on your machine.
+## 🧪 Running Tests with Pytest  
 
-        Before you begin, please ensure you have this installed globally. 
+Run all tests from the project root:  
 
+```powershell
+pytest
+```  
 
-3. Installation
+- Each tests folder contains test cases related to the fixes implemented in its corresponding branch.  
+- The final version is available in the QA branch.  
 
-    - After cloning, change into the directory and type <code>virtualenv .</code>. This will then set up a a virtual python environment within that directory.
+## 🐝 Load Testing with Locust  
+Locust simulates virtual users to test and measure the performance of your Flask application under real-world load conditions.  
 
-    - Next, type <code>source bin/activate</code>. You should see that your command prompt has changed to the name of the folder. This means that you can install packages in here without affecting affecting files outside. To deactivate, type <code>deactivate</code>
+To use it, proceed like following instructions:  
 
-    - Rather than hunting around for the packages you need, you can install in one step. Type <code>pip install -r requirements.txt</code>. This will install all the packages listed in the respective file. If you install a package, make sure others know by updating the requirements.txt file. An easy way to do this is <code>pip freeze > requirements.txt</code>
+Run the Flask application with powershell:  
 
-    - Flask requires that you set an environmental variable to the python file. However you do that, you'll want to set the file to be <code>server.py</code>. Check [here](https://flask.palletsprojects.com/en/1.1.x/quickstart/#a-minimal-application) for more details
+```powershell
+$env:FLASK_APP="server:create_app"  
+flask run  
+```  
 
-    - You should now be ready to test the application. In the directory, type either <code>flask run</code> or <code>python -m flask run</code>. The app should respond with an address you should be able to go to using your browser.
+You can now access to the app into your browser: http://127.0.0.1:5000/  
 
-4. Current Setup
+Open another terminal:  
 
-    The app is powered by [JSON files](https://www.tutorialspoint.com/json/json_quick_guide.htm). This is to get around having a DB until we actually need one. The main ones are:
-     
-    * competitions.json - list of competitions
-    * clubs.json - list of clubs with relevant information. You can look here to see what email addresses the app will accept for login.
+```powershell
+locust -f tests/performance_tests/locustfile.py  
+```  
 
-5. Testing
-
-    You are free to use whatever testing framework you like-the main thing is that you can show what tests you are using.
-
-    We also like to show how well we're testing, so there's a module called 
-    [coverage](https://coverage.readthedocs.io/en/coverage-5.1/) you should add to your project.
-
+You can now access to the Locust board in your browser: http://localhost:8089/  
+Enter the simulate data of your choice and run Locust with the Flask app url: http://127.0.0.1:5000/  
