@@ -11,4 +11,3 @@ def test_login_route(client, users):
     response = client.post('/showSummary', data={'email': users[0]['email'][0]})
     assert response.status_code == 200
     assert "Welcome" in response.data.decode()
-    
